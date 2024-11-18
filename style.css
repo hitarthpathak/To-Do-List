@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman';
+    font-size: 1rem;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    background-color: black;
+    color: white;
+}
+
+.main-box {
+    height: auto;
+    width: 50rem;
+    margin-top: 10vh;
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.input-box {
+    height: auto;
+    width: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.input-box input {
+    height: auto;
+    width: auto;
+    padding: 0.3rem;
+}
+
+.input-box button {
+    border: 2px solid white;
+    height: auto;
+    width: auto;
+    padding: 0.3rem 1rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+#tasks {
+    height: auto;
+    width: auto;
+}
+
+#task {
+    border: 2px solid white;
+    height: auto;
+    width: auto;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+#task #span {
+    height: auto;
+    width: 80%;
+    padding: 0.3rem;
+}
+
+#task #delete {
+    border: none;
+    height: auto;
+    width: 20%;
+    padding: 0.3rem 1rem;
+    background-color: white;
+    cursor: pointer;
+}
