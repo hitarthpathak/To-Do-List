@@ -1,41 +1,55 @@
 let new_task = document.getElementById("new-task");
-let tasks = document.getElementById("tasks");
+let add_task_btn = document.getElementById("add-task-btn");
+let tasks_list = document.getElementById("tasks-list");
+
+// --------------------------------------------------------------------------------------------------
+
+function load_tasks() {
+    let tasks_collection = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks_list.innerHTML = '';
+    tasks_collection.forEach((task, index) => {
+        create_task(task, index);
+    });
+};
+
+// --------------------------------------------------------------------------------------------------
+
+function create_task(task, index) {
+    let p = document.createElement('p');
+    p.id = "task";
+    p.innerHTML = `
+        <span id="#span">${task}</span>
+        <button id="delete" onclick="delete_task(${index})">Delete</button>
+    `;
+    tasks_list.appendChild(p);
+};
 
 // --------------------------------------------------------------------------------------------------
 
 function add_task() {
-
-    if (new_task.value === "") {
-
-        alert("Please Add A Task!");
-
+    const task = new_task.value.trim();
+    if (task) {
+        let tasks_collection = JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks_collection.push(task);
+        localStorage.setItem('tasks', JSON.stringify(tasks_collection));
+        create_task(task, tasks_collection.length - 1);
+        new_task.value = '';
     }
+};
 
-    else {
+// --------------------------------------------------------------------------------------------------
 
-        let task = document.createElement("p");
-        task.id = "task";
+function delete_task(index) {
+    let tasks_collection = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks_collection.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks_collection));
+    load_tasks();
+};
 
-        let span = document.createElement("span");
-        span.innerText = new_task.value;
-        span.id = "span";
+// --------------------------------------------------------------------------------------------------
 
-        let delete_btn = document.createElement("button");
-        delete_btn.innerText = "Delete";
-        delete_btn.id = "delete";
+add_task_btn.addEventListener('click', add_task);
 
-        tasks.appendChild(task);
-        task.appendChild(span);
-        task.appendChild(delete_btn);
+// --------------------------------------------------------------------------------------------------
 
-        new_task.value = "";
-
-        delete_btn.addEventListener("click", () => {
-
-            task.remove();
-
-        })
-
-    }
-
-}
+window.onload = load_tasks;
